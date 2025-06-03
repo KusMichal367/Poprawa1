@@ -93,7 +93,7 @@ public class RentalService : IRentalService
 
             command.Parameters.AddWithValue("@FirstName", input.Client.FirstName);
             command.Parameters.AddWithValue("@LastName", input.Client.LastName);
-            command.Parameters.AddWithValue("@Adress", input.Client.Adress);
+            command.Parameters.AddWithValue("@Adress", input.Client.Address);
 
             try
             {
@@ -114,10 +114,10 @@ public class RentalService : IRentalService
             //5 id of client
             command.Parameters.Clear();
             command.CommandText =
-                "SELECT ID From clients where FirstName = @ClientName and LastName = @ClientLastName and Address = @@ClientAddress;";
+                "SELECT ID From clients where FirstName = @ClientName and LastName = @ClientLastName and Address = @ClientAddress;";
             command.Parameters.AddWithValue("@ClientName", input.Client.FirstName);
             command.Parameters.AddWithValue("@ClientLastName", input.Client.LastName);
-            command.Parameters.AddWithValue("@ClientAddress", input.Client.Adress);
+            command.Parameters.AddWithValue("@ClientAddress", input.Client.Address);
 
             int clientId = (int) await command.ExecuteScalarAsync();
 
